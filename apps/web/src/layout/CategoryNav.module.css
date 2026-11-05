@@ -1,0 +1,30 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.link {
+  display: inline-block;
+  padding: var(--space-1) 0;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid transparent;
+}
+
+.link:hover,
+.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
+.unavailable {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

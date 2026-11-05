@@ -1,0 +1,20 @@
+# dependencies & build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# local env / secrets
+.env
+.env.*
+!.env.example
+
+# challenge brief (employer document, not ours to redistribute)
+*.pdf
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/

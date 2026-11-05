@@ -1,0 +1,15 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.stars {
+  color: var(--color-rating);
+}
+
+.count {
+  color: var(--color-text-muted);
+}

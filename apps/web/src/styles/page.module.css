@@ -1,0 +1,40 @@
+/* Shared page-level typography and section spacing. */
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+  max-width: 40rem;
+}
+
+.eyebrow {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+}
+
+.lede {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
+
+.section {
+  margin-bottom: var(--space-8);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-5);
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: var(--space-5);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
