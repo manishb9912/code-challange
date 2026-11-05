@@ -1,0 +1,12 @@
+# Never send secrets, VCS data or host build output into the build context.
+.git
+.github
+.env
+.env.*
+!.env.example
+**/node_modules
+**/dist
+**/coverage
+*.pdf
+docs
+*.md

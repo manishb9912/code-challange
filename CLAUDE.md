@@ -27,10 +27,11 @@ npm run typecheck                    # tsc --noEmit (all workspaces)
 npm test                             # Vitest (all workspaces), no network
 npm run test:coverage                # with coverage thresholds
 npm run build                        # production builds
+npm run verify                       # lint + typecheck + test (run before every commit)
 npm test -w apps/api -- search       # run one workspace / filter by name
 ```
 
-**Before every commit:** `npm run lint && npm run typecheck && npm test` must pass. Never skip, disable or `.only` tests, or add `eslint-disable`, to get green. Fix the cause.
+**Before every commit:** `npm run verify` (lint + typecheck + test) must pass. Never skip, disable or `.only` tests, or add `eslint-disable`, to get green. Fix the cause.
 
 ## Repository layout
 
@@ -54,7 +55,8 @@ packages/shared/  domain types + zod schemas shared by api and web (single sourc
 docs/          SPEC.md, adr/, ai-notes.md, PR_DESCRIPTION.md
 ```
 
-### Dependency rule (enforced by ESLint `import/no-restricted-paths`)
+### Dependency rule (enforced by ESLint `import-x/no-restricted-paths`)
+
 - `domain` imports nothing internal except `packages/shared`.
 - `services` import `domain` and `ports` only.
 - `adapters` import `ports` and `domain`.
@@ -83,7 +85,7 @@ docs/          SPEC.md, adr/, ai-notes.md, PR_DESCRIPTION.md
 
 Changes that weaken any of these need explicit human approval and an entry in SECURITY.md.
 
-- **XSS**: no `dangerouslySetInnerHTML` (`react/no-danger` is an error). Render upstream text as text. HTML-escape all user input in email templates, and always send a plain-text part too. Don't loosen the CSP (no `unsafe-inline` or `unsafe-eval`, and no new hosts without a reason).
+- **XSS**: no `dangerouslySetInnerHTML` (`@eslint-react/dom-no-dangerously-set-innerhtml` is an error). Render upstream text as text. HTML-escape all user input in email templates, and always send a plain-text part too. Don't loosen the CSP (no `unsafe-inline` or `unsafe-eval`, and no new hosts without a reason).
 - **Injection**:
   - No `eval`, `new Function`, `child_process` or dynamic `require`.
   - Never build a `RegExp` from user input; use `includes`.
@@ -122,7 +124,7 @@ Changes that weaken any of these need explicit human approval and an entry in SE
 ## Code style
 
 - Strict TypeScript. No `any` without a one-line justification comment, and no non-null `!` assertions on external data.
-- Small, single-purpose functions and files, with descriptive names. Comments explain *why*, not *what*.
+- Small, single-purpose functions and files, with descriptive names. Comments explain _why_, not _what_.
 - No dead code, commented-out code, stray `console.log` or unresolved TODOs. A TODO carries a reason and lives in DECISIONS.md's "Next steps".
 - Use async/await everywhere, and always handle rejected promises.
 - Prettier formatting and ESLint clean.
